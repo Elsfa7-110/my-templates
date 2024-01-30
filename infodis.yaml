@@ -1,0 +1,27 @@
+id: apidebugx
+
+info:
+name: apidebug
+  author: ELSFA7110
+  severity: low
+  tags: rce,exposure
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/api/health"
+      - "{{BaseURL}}/api/settings"
+      
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "service"
+          - "timestamp"
+          - "version"
+          - "healthy"
+        part: body
+
+      - type: status
+        status:
+          - 200

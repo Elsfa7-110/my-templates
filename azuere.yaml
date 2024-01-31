@@ -1,0 +1,35 @@
+id: azuere-marketapix
+
+info:
+  name: Marketplace API Emulator
+  author: ELSFA7110
+  severity: critical
+  reference: https://twitter.com/sec715/status/1397924997457317897
+  tags: rce,exposure
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/subscriptions.html"
+      - "{{BaseURL}}/landing.html"
+      - "{{BaseURL}}/offers.html"
+      - "{{BaseURL}}/config.html"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "Marketplace API Emulator"
+          - "Azure Marketplace API Emulator"
+          - "Webhook and Landing Page"
+          - "Configuration"
+          - "Emulator Behaviour"
+          - "Configure Subscription"
+          - "Offer Central"
+          - "Change plan to?"
+        part: body
+
+      - type: status
+        status:
+          - 200

@@ -1,0 +1,27 @@
+id: consledflask
+
+info:
+name: consledflask
+  author: ELSFA7110
+  severity: high
+  tags: rce,exposure
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/api/console"
+      - "{{BaseURL}}/console"
+      
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "EVALEX"
+          - "debugger"
+          - "shell"
+          - "Werkzeug"
+        part: body
+
+      - type: status
+        status:
+          - 200

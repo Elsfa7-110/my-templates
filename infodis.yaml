@@ -4,9 +4,9 @@ info:
   name: api dis
   author: Elsfa7110
   severity: medium
-  description: Sensitive environment variables may not be masked
+  description: debugandlogger
   reference:
-    - https://wya.pl/2021/12/20/bring-your-own-ssrf-the-gateway-actuator/
+    - https://noanyting.com
   metadata:
     max-request: 2
   tags: springboot,exposure,misconfig

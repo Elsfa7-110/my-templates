@@ -1,26 +1,35 @@
-id: apidebugx
+id: apidiss
 
 info:
-name: apidebug
-  author: ELSFA7110
-  severity: low
-  tags: rce,exposure
+  name: api dis
+  author: Elsfa7110
+  severity: medium
+  description: Sensitive environment variables may not be masked
+  reference:
+    - https://wya.pl/2021/12/20/bring-your-own-ssrf-the-gateway-actuator/
+  metadata:
+    max-request: 2
+  tags: springboot,exposure,misconfig
 
-requests:
+http:
   - method: GET
     path:
       - "{{BaseURL}}/api/health"
       - "{{BaseURL}}/api/settings"
-      
+
+    stop-at-first-match: true
+
     matchers-condition: and
     matchers:
       - type: word
+        part: body
         words:
           - "service"
           - "timestamp"
           - "version"
           - "healthy"
-        part: body
+
+        condition: and
 
       - type: status
         status:
